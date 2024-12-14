@@ -39,6 +39,7 @@ export default function Home() {
                             guesses = 0;
                             guessesText.innerText = 'Guesses: ' + guesses;
                             statusText.innerText = '';
+                            guessInput.value = '';
                             imageContainer.innerText = "Loading...";
                             prefetchImage = null;
 
@@ -78,7 +79,7 @@ export default function Home() {
                             
                             guesses += 1;
                             if (topic === guessInput.value.toLowerCase()) {
-                                statusText.innerText = 'Correct';
+                                statusText.innerText = 'Correct answer!';
                             } else {
                                 statusText.innerText = 'Incorrect';
                             }
@@ -113,55 +114,69 @@ export default function Home() {
                     </script>
                 `}
             </head>
-            <body style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: "10px" }}>
-                <h1 style={{ textAlign: 'center', margin: '0' }}>HONCATHON Pictionary</h1>
-                <div style={{ display: "flex", gap: "10px", fontSize: "20px" }}>
-                    <input placeholder="Base topic" style={{ fontSize: "16px", padding: '5px' }} id="baseTopic"/>
-                    <button style={{
-                        backgroundColor: "#581c87",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "3px",
-                        fontWeight: "semibold",
-                        fontSize: "16px",
-                        padding: "10px 10px"
-                    }} id="generateNewTopic">Generate new topic</button>
+            <body style={{ display: 'flex', gap: "10px", justifyContent: "space-around"}}>
+                <div style={{ backgroundColor: '#581c8733', width: "500px", borderTop: "5px solid #581c87", padding: '5px 10px' }}>
+                    <h1 style={{ textAlign: 'center', margin: '0' }}>Pictionary</h1>
+                    <p>Welcome to the HONCATHON pictionary.</p>
+                    <h2>How to use</h2>
+                    <p>- First enter a category in the top input (for example, you can enter "Pokemon"). Then click "Generate new topic", and a topic is generated based on the category.</p>
+                    <p>- Then an image is generated. Your goal is to guess the topic from the image. You can generate more images from the same topic by clicking the new image button. You can reveal the answer by clicking the reveal answer button.</p>
+                    <p>- The topic and image generation is slow, and will take some time to load.</p>
                 </div>
-                <div style={{ width: "450px", height: "450px", display: "flex", alignItems: "center", justifyContent: "center" }} id="imageContainer">
-                </div>
-                <div style={{ display: "flex", gap: "10px", fontSize: "16px", alignItems: "center", justifyContent: "space-between" }}>
-                    <span id="guessesText">Guesses: 0</span>
-                    <span id="statusText"></span>
-                    <button style={{
-                        backgroundColor: "#581c87",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "3px",
-                        fontWeight: "semibold",
-                        fontSize: "16px",
-                        padding: "5px 5px"
-                    }} id="generateNewImage">New image</button>
-                </div>
-                <div style={{ display: "flex", gap: "10px" }}>
-                    <input placeholder="Guess" style={{ fontSize: "16px", padding: '5px' }} id="guessInput"/>
-                    <button style={{
-                        backgroundColor: "#581c87",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "3px",
-                        fontWeight: "semibold",
-                        fontSize: "16px",
-                        padding: "10px 10px"
-                    }} id="guess">Guess</button>
-                    <button style={{
-                        backgroundColor: "#581c87",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "3px",
-                        fontWeight: "semibold",
-                        fontSize: "16px",
-                        padding: "10px 10px"
-                    }} id="revealAnswer">Reveal answer</button>
+                <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: "10px" }}>
+                    <div style={{ display: "flex", gap: "10px", fontSize: "20px", justifyContent: "space-between", width: "100%" }}>
+                        <input placeholder="Category" style={{ fontSize: "16px", padding: '5px', flexGrow: 1 }} id="baseTopic"/>
+                        <button style={{
+                            backgroundColor: "#581c87",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "3px",
+                            fontWeight: "semibold",
+                            fontSize: "16px",
+                            padding: "10px 10px",
+                            cursor: "pointer"
+                        }} id="generateNewTopic">Generate new topic</button>
+                    </div>
+                    <div style={{ width: "450px", height: "450px", display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid black" }} id="imageContainer">
+                        Image
+                    </div>
+                    <div style={{ display: "flex", gap: "10px", fontSize: "16px", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+                        <span id="guessesText">Guesses: 0</span>
+                        <span id="statusText"></span>
+                        <button style={{
+                            backgroundColor: "#581c87",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "3px",
+                            fontWeight: "semibold",
+                            fontSize: "16px",
+                            padding: "10px 10px",
+                            cursor: "pointer"
+                        }} id="generateNewImage">New image</button>
+                    </div>
+                    <div style={{ display: "flex", gap: "10px", width: "100%", justifyContent: "space-between" }}>
+                        <input placeholder="Guess" style={{ fontSize: "16px", padding: '5px', flexGrow: 1 }} id="guessInput"/>
+                        <button style={{
+                            backgroundColor: "#581c87",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "3px",
+                            fontWeight: "semibold",
+                            fontSize: "16px",
+                            padding: "10px 10px",
+                            cursor: "pointer"
+                        }} id="guess">Guess topic</button>
+                        <button style={{
+                            backgroundColor: "#581c87",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "3px",
+                            fontWeight: "semibold",
+                            fontSize: "16px",
+                            padding: "10px 10px",
+                            cursor: "pointer"
+                        }} id="revealAnswer">Reveal answer</button>
+                    </div>
                 </div>
             </body>
         </html>
