@@ -26,6 +26,7 @@ export default function Home() {
                         let guessesText = null;
                         let statusText = null;
                         let previous = [];
+                        let imageGenerationCounter = 0;
 
                         let topic = null;
                         let guesses = 0;
@@ -56,9 +57,14 @@ export default function Home() {
                         function generateNewImage() {
                             if (topic) {
                                 imageContainer.innerText = "Loading...";
+                                imageGenerationCounter++;
+                                let currentGenerationCounter = imageGenerationCounter;
                                 fetch('/api/image?topic=' + topic)
                                     .then(img => img.text())
                                     .then(img => {
+                                        if (currentGenerationCounter !== imageGenerationCounter) {
+                                            return;
+                                        }
                                         // https://stackoverflow.com/a/8499716
                                         const imgSrc = 'data:image/png;base64, ' + img;
                                         imageContainer.innerHTML = '';
